@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>عيادة الكفوف السعيدة البيطرية للقطط - القصيم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="عيادة الكفوف السعيدة البيطرية للقطط في القصيم. مختصة بالقطط فقط، أشعة حديثة ومتطورة، مختبر متكامل، تحاليل وظائف أعضاء، تحليل صورة الدم الشاملة، وخدمات تنويم علاجي للحالات التي تحتاج متابعة. حجز المواعيد عبر الواتساب أو الرقم الموحد 920033859.">
+
+    <!-- خطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #A5DEE5;   /* الأزرق */
+            --accent: #CFE69A;    /* الأخضر */
+            --bg: #f7fbfc;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --radius-lg: 20px;
+            --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.10);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Tajawal", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container { width: min(1120px, 100% - 32px); margin: 0 auto; }
+
+        header { background: linear-gradient(135deg, #0f172a 0%, #111827 40%, #020617 100%); color: #f9fafb; padding: 18px 0 44px; position: relative; overflow: hidden; }
+        header::before { content: ""; position: absolute; inset-inline-end: -120px; inset-block-start: -120px; width: 260px; height: 260px; border-radius: 999px; background: radial-gradient(circle, rgba(165,222,229,0.3), transparent 60%); }
+        nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 26px; position: relative; z-index: 1; }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand-logo { width: 52px; height: 52px; border-radius: 16px; background: #020617; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; padding: 6px; }
+        .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-name { font-family: "Baloo Bhaijaan 2", system-ui; font-weight: 700; font-size: 1.1rem; }
+        .brand-sub { font-size: 0.82rem; color: #cbd5f5; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.9rem; }
+        .nav-links a { padding: 6px 12px; border-radius: 999px; color: #e5f4ff; border: 1px solid transparent; }
+        .nav-links a:hover { border-color: rgba(165, 222, 229, 0.7); background: rgba(15, 23, 42, 0.8); }
+        .hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 26px; align-items: center; position: relative; z-index: 1; }
+        .hero-title { font-family: "Baloo Bhaijaan 2", system-ui; font-size: 2rem; margin: 0 0 10px; line-height: 1.5; }
+        .hero-text { font-size: 0.95rem; line-height: 1.9; margin: 0 0 16px; color: #e5e7eb; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .badge { padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(148, 163, 184, 0.6); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 999px; padding: 10px 18px; font-size: 0.9rem; cursor: pointer; white-space: nowrap; }
+        .btn-primary { background: var(--primary); color: #042f3f; font-weight: 600; }
+        .btn-secondary { border: 1px solid #e5f4ff; color: #e5f4ff; background: transparent; }
+        .hero-card { background: rgba(15, 23, 42, 0.88); border-radius: var(--radius-lg); padding: 16px 16px 12px; box-shadow: 0 18px 40px rgba(0,0,0,0.4); font-size: 0.9rem; }
+        .hero-card h3 { margin: 0 0 8px; font-size: 1rem; }
+        .hero-card ul { list-style: none; padding: 0; margin: 0 0 8px; }
+        .hero-card li { display: flex; gap: 6px; margin-bottom: 6px; }
+        .hero-card li span:first-child { font-size: 0.9rem; margin-top: 2px; }
+        .hero-note { font-size: 0.8rem; color: #cbd5f5; }
+        main { padding: 30px 0 40px; }
+        section { padding: 26px 0; }
+        .section-header { margin-bottom: 16px; }
+        .section-title { font-family: "Baloo Bhaijaan 2", system-ui; font-size: 1.35rem; margin: 0 0 4px; }
+        .section-sub { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+        .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+        .about-text { font-size: 0.94rem; line-height: 1.9; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .service-card { background: #ffffff; border-radius: 18px; padding: 14px 13px 11px; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06); font-size: 0.9rem; }
+        .service-tag { display: inline-block; font-size: 0.75rem; padding: 3px 8px; border-radius: 999px; background: var(--primary); color: #042f3f; margin-bottom: 6px; }
+        .service-card h3 { margin: 0 0 6px; font-size: 0.98rem; }
+        .service-card p { margin: 0 0 6px; color: var(--text-muted); line-height: 1.7; }
+        .service-note { font-size: 0.78rem; color: #9ca3af; }
+        .booking-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+        .booking-card { background: #020617; color: #e5f4ff; border-radius: var(--radius-lg); padding: 16px 16px 12px; box-shadow: var(--shadow-soft); }
+        .booking-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+        .booking-card p { margin: 0 0 12px; font-size: 0.9rem; }
+        .booking-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+        .btn-book { flex: 1 1 140px; justify-content: space-between; padding-inline: 14px; font-size: 0.86rem; }
+        .btn-book span { font-size: 0.9rem; }
+        .booking-note { margin-top: 8px; font-size: 0.78rem; color: #cbd5f5; }
+        .booking-info { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); font-size: 0.86rem; }
+        .booking-info-row { margin-bottom: 6px; }
+        .booking-info-label { font-weight: 600; font-size: 0.88rem; }
+        .hours-list { list-style: none; padding: 0; margin: 4px 0 0; font-size: 0.84rem; color: var(--text-muted); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .review-card { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); font-size: 0.86rem; }
+        .review-name { font-weight: 600; margin-bottom: 2px; font-size: 0.9rem; }
+        .review-stars { color: #f4b400; font-size: 0.8rem; margin-bottom: 4px; }
+        .review-text { margin: 0; color: var(--text-muted); line-height: 1.7; white-space: pre-line; }
+        .location-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; }
+        .map-card { background: #ffffff; border-radius: 16px; padding: 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); }
+        iframe { border: 0; border-radius: 12px; width: 100%; min-height: 230px; }
+        .contact-card { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); font-size: 0.9rem; }
+        .contact-row { margin-bottom: 6px; }
+        .contact-label { font-weight: 600; font-size: 0.88rem; }
+        .contact-row a { color: #0369a1; font-size: 0.88rem; }
+        footer { padding: 16px 0 26px; background: #020617; color: #e5e7eb; font-size: 0.8rem; }
+        .footer-inner { width: min(1120px, 100% - 32px); margin: 0 auto; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .whatsapp-float { position: fixed; left: 16px; bottom: 16px; z-index: 999; }
+        .whatsapp-float a { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%; background-color: #25d366; box-shadow: 0 10px 25px rgba(0,0,0,0.35); color: #fff; font-size: 26px; }
+        @media (max-width: 900px) {
+            .hero,
+            .about-grid,
+            .services-grid,
+            .booking-grid,
+            .reviews-grid,
+            .location-grid { grid-template-columns: minmax(0, 1fr); }
+            nav { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.6rem; }
+            .booking-buttons { flex-direction: column; }
+            .btn-book { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav>
+            <div class="brand">
+                <div class="brand-logo">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/096d121e-c361-4604-a45f-8a2c5bf874af" alt="شعار عيادة الكفوف السعيدة">
+                </div>
+                <div class="brand-text">
+                    <div class="brand-name">الكفوف السعيدة</div>
+                    <div class="brand-sub">عيادة بيطرية متخصصة في القطط فقط - القصيم</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#about">عن العيادة</a>
+                <a href="#services">الخدمات</a>
+                <a href="#booking">حجز المواعيد</a>
+                <a href="#reviews">آراء المربين</a>
+                <a href="#location">الموقع والتواصل</a>
+            </div>
+        </nav>
+        <div class="hero">
+            <div>
+                <h1 class="hero-title">رعاية بيطرية متخصصة للقطط فقط 🐱</h1>
+                <p class="hero-text">
+                    في عيادة <strong>الكفوف السعيدة</strong> نهتم بصحة قطتك من أول كشف إلى آخر متابعة.
+                    مجهزين بأشعة حديثة ومتطورة، مختبر متكامل، وتحاليل وظائف أعضاء وصورة دم شاملة،
+                    مع خدمات تنويم للحالات التي تحتاج متابعة دقيقة.
+                </p>
+                <div class="hero-badges">
+                    <span class="badge">تخصص كامل في طب القطط</span>
+                    <span class="badge">مختبر وتحاليل وظائف أعضاء وصورة دم</span>
+                    <span class="badge">خدمات تنويم ومتابعة دقيقة للحالات</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://wa.me/966920033859?text=مرحبًا، أبغى أكشف على الأليف في عيادة الكفوف السعيدة">حجز كشف لقطك عبر واتساب</a>
+                    <a class="btn btn-secondary" href="tel:920033859">📞 الاتصال على 920033859</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>ملخص خدمات عيادة الكفوف السعيدة</h3>
+                <ul>
+                    <li><span>🩺</span><span>كشف سريري لحالة القطة مع شرح واضح للمربي وخطة تشخيص وعلاج.</span></li>
+                    <li><span>🧪</span><span>تحليل صورة الدم الشاملة CBC وتحاليل وظائف الكبد والكلى وغيرها. <strong>تحاليلنا تساعد في أي حالة، وتُستخدم للتحقق من صحة الأليف بدقة حتى لو بدون عمليات.</strong></span></li>
+                    <li><span>📸</span><span>أشعة حديثة ومتطورة تُستخدم عند الحاجة لتوضيح الصورة قبل القرار العلاجي.</span></li>
+                    <li><span>🏥</span><span>خدمات تنويم علاجي ومراقبة للحالات المحتاجة رعاية مستمرة.</span></li>
+                </ul>
+                <div class="hero-note">نحرص أن تكون كل خطوة واضحة للمربي، بدون تهويل، مع خيارات علاجية واقعية تناسب حالة القطة.</div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">عن عيادة الكفوف السعيدة</h2>
+                <p class="section-sub">عيادة سعودية متخصصة في القطط فقط، مجهزة لخدمة المربين في منطقة القصيم وما حولها.</p>
+            </div>
+            <div class="about-grid">            <div class="about-text">
+                <p><strong>"هنا تبدأ راحة قطتك… وتبدأ معها رعاية طبية تهتم فعلًا."</strong></p>
+                <p>في عيادة الكفوف السعيدة نصنع تجربة علاجية مختلفة للقطط؛ تجربة تجمع بين التشخيص الدقيق، والرعاية الهادئة، والاهتمام الحقيقي بالتفاصيل اللي تصنع فرق واضح في صحة الأليف.</p>
+                <p>نوفّر بيئة مُهيأة بالكامل للقطط فقط، مع مختبر متكامل، أجهزة أشعة حديثة ومتطورة، وخيارات تنويم علاجي للحالات اللي تحتاج متابعة دقيقة.</p>
+                <p>كل خطوة تتم بطريقة واضحة وبأسلوب بسيط وواقعي بعيد عن التعقيد والتهويل.</p>
+                <p>سواء كانت الزيارة للفحص، علاج، متابعة حالة، أو خدمة عناية—نضمن لك تجربة مرتّبة من لحظة الوصول وحتى اكتمال الخطة العلاجية، مع شرح مفهوم واحترام كامل لوقتك وقلقك على قطتك.</p>
+                <p>هدفنا إن كل زيارة تكون مريحة، وكل قرار علاجي يكون مبني على خبرة وتشخيص دقيق وثقة متبادلة.</p>
+                <p><strong>ابدأ تجربتك مع الكفوف السعيدة… رعاية متخصصة تصنع فارقًا حقيقيًا لصحة قطتك.</strong></p>
+            </div>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الخدمات الطبية في عيادة الكفوف السعيدة</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-tag">كشف وتشخيص</div>
+                    <h3>كشف سريري شامل</h3>
+                    <p>تقييم حالة القطة، أخذ التاريخ المرضي، وفحص سريري دقيق يوضح للطبيب نقطة البداية قبل طلب أي تحاليل أو أشعة.</p>
+                    <div class="service-note">مناسب للحالات الجديدة أو المتابعة.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">صورة الدم</div>
+                    <h3>تحليل صورة الدم الشاملة CBC</h3>
+                    <p>تحاليل CBC تساعد الطبيب في التشخيص الدقيق في جميع الحالات (التهاب، خمول، تعب). التحليل يُستخدم للمساعدة في التشخيص، تقييم المناعة، تحديد سبب الخمول، أو فقر الدم. كل النتائج تُشرح للمربي ويعرف دور التحاليل في القرار العلاجي.</p>
+                    <div class="service-note">ليس فقط للعمليات، التحاليل جزء أساسي في التشخيص السليم.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">وظائف أعضاء</div>
+                    <h3>تحاليل وظائف الكبد والكلى</h3>
+                    <p>تحاليل كيمياء حيوية لتقييم الكبد، الكلى، السكر، وبعض المؤشرات الأخرى المهمة خاصة في القطط الكبيرة أو المزمنة.</p>
+                    <div class="service-note">مهم قبل التخدير أو في حالات التقيؤ والخمول المزمن.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">أشعة</div>
+                    <h3>أشعة حديثة ومتطورة</h3>
+                    <p>أشعة تُستخدم لتوضيح الصورة في حالات معينة (مثل مشاكل الصدر أو البطن أو الحالات التي تحتاج توثيق أدق قبل القرار العلاجي).</p>
+                    <div class="service-note">يتم تحديد الحاجة للأشعة حسب تقييم الطبيب.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">تنويم علاجي</div>
+                    <h3>خدمات تنويم وملاحظة</h3>
+                    <p>تنويم للحالات اللي تحتاج سوائل وريدية أو مراقبة مستمرة، خاصة بعد العمليات أو في الحالات الحرجة.</p>
+                    <div class="service-note">يتم الاتفاق على خطة التنويم ومدة البقاء في العيادة قبل البدء.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">عمليات</div>
+                    <h3>عمليات التعقيم والجراحات</h3>
+                    <p>تعقيم ذكور وإناث وجراحات أخرى حسب الحالة، ببروتوكول تخدير مناسب للقطط وتعليمات بعد العملية مكتوبة.</p>
+                    <div class="service-note">يتم فحص القطة قبل العملية للتأكد من جاهزيتها.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">خدمات عناية</div>
+                    <h3>خدمات عناية للقطط</h3>
+                    <p>خدمات عناية بسيطة مثل قص الأظافر وتنظيف الأذن وخدمات أخرى حسب ما توفره العيادة.</p>
+                    <div class="service-note">يمكن دمجها مع زيارة الكشف حسب التنسيق.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">متابعة</div>
+                    <h3>متابعة الحالات</h3>
+                    <p>بعض الحالات تحتاج متابعة بعد الزيارة، ويتم تحديد ذلك مع الطبيب، مع إمكانية استخدام الواتساب للتوضيح.</p>
+                    <div class="service-note">لا يغني عن الحضور إذا تطورت الأعراض.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-tag">تنظيم المواعيد</div>
+                    <h3>تنسيق مسبق عبر الواتساب</h3>
+                    <p>تنظيم المواعيد عبر الواتساب يساعد على تقليل الانتظار وترتيب الحالات حسب أولوية الحالة.</p>
+                    <div class="service-note">خاصة في الأوقات المزدحمة.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="booking">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">احجز موعدك بسهولة عبر الواتساب</h2>
+                <p class="section-sub">اختر نوع الحجز، وسيتم فتح الواتساب برسالة جاهزة، تقدر تعدل عليها وترسلها مباشرة.</p>
+            </div>
+            <div class="booking-grid">
+                <div class="booking-card">
+                    <h3>أنواع الحجز المتاحة</h3>
+                    <p>الحجز عبر الواتساب يعطيك أولوية للدخول بدون انتظار، ويضمن تنظيم الجدول بحيث نقلل الزحمة قدر الإمكان.</p>
+                    <div class="booking-buttons">
+                        <a class="btn btn-primary btn-book" href="https://wa.me/966920033859?text=مرحبًا، أبغى أكشف على الأليف في عيادة الكفوف السعيدة">حجز كشف بالعيادة <span>🩺</span></a>
+                        <a class="btn btn-book" style="background:#0b1220; color:#f9fafb; border:1px solid #4b5563;" href="https://wa.me/966920033859?text=مرحبًا، أبغى أحجز خدمة عناية لقطي في عيادة الكفوف السعيدة">حجز خدمات عناية <span>✨</span></a>
+                        <a class="btn btn-book" style="background:#111827; color:#fde68a; border:1px solid #facc15;" href="https://wa.me/966920033859?text=مرحبًا، أبغى أستفسر عن عمليات التعقيم للقطط في عيادة الكفوف السعيدة">استفسار عن عمليات التعقيم <span>⚕️</span></a>
+                    </div>
+                    <div class="booking-note">يفضّل تكتب في الرسالة: عمر القطة، الأعراض باختصار، وأي أدوية أخذتها سابقًا (إذا موجودة)، عشان نقدر نساعدك بشكل أدق.</div>
+                </div>
+                <div class="booking-info">
+                    <div class="booking-info-row">
+                        <div class="booking-info-label">كيف يتم تأكيد الموعد؟</div>
+                        <div>موظف/ـة الاستقبال يراجع الرسالة، ويرد عليك بتوقيت متاح ويثبت الموعد أو يقترح وقت بديل.</div>
+                    </div>
+                    <div class="booking-info-row">
+                        <div class="booking-info-label">متى نقرر التنويم العلاجي؟</div>
+                        <div>قرار التنويم يكون بعد كشف الطبيب وتشخيص الحالة، مو عن طريق الواتساب مباشرة.</div>
+                    </div>
+                    <div class="booking-info-row">
+                        <div class="booking-info-label">هل أقدر أجي بدون حجز؟</div>
+                        <div>الحجز المسبق يعطي العميل أولوية للدخول بسرعة بدون انتظار.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">آراء بعض المربين من تقييمات قوقل ماب</h2>
+                <p class="section-sub">نقلنا النصوص كما كتبها المربون مع تعديلات تنسيق بسيطة.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-name">ايلام</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">عياده الكفوف السعيده الف شكر لكم جميعا من الاستقبال خدمه رائعه ..
+الدكتور ممتاز ماشاء الله يتعامل مع القطط بكل حنيه.
+أخذت البسه عندي كان مضروب ع اليد وخفت أنها مكسوره، أخذنا اشاعه عندهم وان شاءالله الأمور تمام.
+ونظافه العياده ممتازه اول ماندخل نشم ريحه المطهرات.
+الأسعار مناسبه.
+الف شكر لكم جميعا وان شاءالله الي الأمام.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-name">Atheer</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">لو فيه أكثر من خمس نجوم كنت أعطيتهم بدون تردد.
+عيادة الكفوف السعيدة البيطرية ما كانت بس مكان علاج لقطوتي، كانت فعليًا ملجأ أمان ورحمة في وقت كنت فيه خائفة وقلقة على روح غالية عليّ.
+قطوتي مرت بوعكتين صعبتين، وفي كل مرحلة كانوا موجودين معي خطوة بخطوة. ما شفت منهم إلا صدق، حرص، واهتمام يفوق التوقع.
+وأخص بالشكر والتقدير الدكتور خالد أبو سرداح، كان جداً متعاون ومتابع لحالة قطوتي بشكل مستمر.
+واللي زاد امتناني أكثر إن العيادة قدمت لي بعض الخدمات بدون مقابل، بدافع إنساني راقٍ نادر جداً، ما يطلع إلا من ناس قلوبهم فعلاً نظيفة ويحبون الخير.
+نِعْمَ القدوة بالأمانة والرحمة والاحترافية. الله يكتب أجركم ويوسع رزقكم.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-name">Reema</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">أفضل عيادة بيطرية بالقصيم لأسباب عدة:
+أولًا حرفية الأطباء والطاقم بشكل عام،
+ثانيًا درجة نظافة المكان قياسية ومهتمين بأدق التفاصيل،
+وغير انهم متعاونين جدًا وبيساعدونكم وبيجاوبون على كل إستفساراتكم.
+الأكيد انهم فعلًا يخافون الله وغير مستغلين، وبيقولون لكم إذا الشيء ضروري أو لا.
+تجربة متكاملة بداية من موظفة الإستقبال العسل إلى الأطباء ومساعدينهم اللي يخلونكم تعتمدونها كعيادة أليفكم الدائمة.
+شكرًا عيادة الكفوف السعيدة على كل شيء، أقدّر لكم جهودكم والله يعينكم ويرفع قدركم 🤍💚</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-name">noura</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">ماشاء الله تبارك الله، العياده فوق التقييم والله.
+من ترويش، من تعقيم، وقطوتي جتها اصابة بعينها من الشارع واهتموا ماقصروا ويسألون عنها وهي عندي بالبيت،
+يعني مب بس ياخذون فلوس ويعطونك علاج وخلاص.
+أصروا علي اني اجيبها مره ثانيه زياره بدون مقابل عشان يطمنون عليها.
+والعياده نظيفه وتعقيم المكان مهتمين فيه مره، بعد كل قطو يعقمون غرفة الكشف مليون مره شفتهم بعيني.
+عملية التعقيم كان يشملها الفندقه ودخلوني وخلوني اشوف الغرفه بنفسي،
+الأغراض كلها جديده ونظيفه ومعقمه، والرمل ما يستخدمون رمل قط آخر، يحطون جديد حتى لو هو نظيف، شفت كل هذا بعيني قسم بالله.
+دكتور خالد كان مشرف على الاصابه والعمليه، ماقصر، قمه بالاحترام ومتعاون جداً جداً وحنون على القطط يدلعهم ويعطيهم تريت 🤣
+موظفة الاستقبال (ميسم) رهيبه وتجنن مره، متعاونه وبشوشه وتدلّع القطاوه وتصورهم لكم إذا في فندقه.
+عسل عسل مره، تعطيهم تريت 🤣🤣🤣
+شكراً ميسم و شكراً دكتور خالد 🙏🏻</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="location">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الموقع وأوقات العمل وطرق التواصل</h2>
+                <p class="section-sub">زورنا في العيادة أو تواصل معنا قبل الزيارة للحجز والاستفسار.</p>
+            </div>
+            <div class="contact-card" style="max-width: 600px; margin: 0 auto;">
+                <div class="contact-row">
+                    <div class="contact-label">عنوان العيادة:</div>
+                    <div>القصيم - المملكة العربية السعودية</div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">أوقات العمل:</div>
+                    <ul class="hours-list">
+                        <li>الأحد - الخميس: 10:00 صباحًا - 10:00 مساءً</li>
+                        <li>الجمعة: مغلقة</li>
+                        <li>السبت: 4:00 مساءً - 10:00 مساءً</li>
+                    </ul>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">الرقم الموحد:</div>
+                    <a href="tel:920033859">920033859</a>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">واتساب العيادة:</div>
+                    <a href="https://wa.me/966920033859?text=مرحبًا، عندي استفسار بخصوص قطتي">فتح واتساب للتواصل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="footer-inner">
+        <div>© <span id="year"></span> عيادة الكفوف السعيدة البيطرية للقطط - جميع الحقوق محفوظة.</div>
+        <div>للحجوزات والاستفسارات: الرقم الموحد 920033859 أو الواتساب.</div>
+    </div>
+</footer>
+<div class="whatsapp-float">
+    <a href="https://wa.me/966920033859?text=مرحبًا، عندي استفسار بخصوص قطتي">💬</a>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
