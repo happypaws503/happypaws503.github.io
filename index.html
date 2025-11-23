@@ -13,8 +13,8 @@
 
     <style>
         :root {
-            --primary: #A5DEE5;   /* الأزرق */
-            --accent: #CFE69A;    /* الأخضر */
+            --primary: #A5DEE5;
+            --accent: #CFE69A;
             --bg: #f7fbfc;
             --text-main: #111827;
             --text-muted: #6b7280;
@@ -86,31 +86,40 @@
         .booking-info { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); font-size: 0.86rem; }
         .booking-info-row { margin-bottom: 6px; }
         .booking-info-label { font-weight: 600; font-size: 0.88rem; }
-        .hours-list { list-style: none; padding: 0; margin: 4px 0 0; font-size: 0.84rem; color: var(--text-muted); }
+        
+        /* نظام الحجز الإلكتروني */
+        .booking-form-container { background: #ffffff; border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-soft); }
+        .booking-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid #f3f4f6; }
+        .tab-btn { flex: 1; padding: 12px 16px; background: transparent; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); transition: all 0.3s; font-family: inherit; }
+        .tab-btn:hover { color: var(--text-main); background: #f9fafb; }
+        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .booking-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
+        .form-group input, .form-group select, .form-group textarea { padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 0.9rem; font-family: inherit; transition: border-color 0.2s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(165, 222, 229, 0.1); }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .btn-submit { width: 100%; padding: 14px; font-size: 1rem; margin-top: 8px; }
+        .form-note { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin: 8px 0 0; }
+        
         .reviews-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
         .review-card { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); font-size: 0.86rem; }
         .review-name { font-weight: 600; margin-bottom: 2px; font-size: 0.9rem; }
         .review-stars { color: #f4b400; font-size: 0.8rem; margin-bottom: 4px; }
         .review-text { margin: 0; color: var(--text-muted); line-height: 1.7; white-space: pre-line; }
-        .location-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; }
-        .map-card { background: #ffffff; border-radius: 16px; padding: 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); }
-        iframe { border: 0; border-radius: 12px; width: 100%; min-height: 230px; }
-        .contact-card { background: #ffffff; border-radius: 16px; padding: 12px 12px 10px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06); font-size: 0.9rem; }
-        .contact-row { margin-bottom: 6px; }
-        .contact-label { font-weight: 600; font-size: 0.88rem; }
-        .contact-row a { color: #0369a1; font-size: 0.88rem; }
         footer { padding: 16px 0 26px; background: #020617; color: #e5e7eb; font-size: 0.8rem; }
         .footer-inner { width: min(1120px, 100% - 32px); margin: 0 auto; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
         .whatsapp-float { position: fixed; left: 16px; bottom: 16px; z-index: 999; }
         .whatsapp-float a { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%; background-color: #25d366; box-shadow: 0 10px 25px rgba(0,0,0,0.35); color: #fff; font-size: 26px; }
         @media (max-width: 900px) {
-            .hero,
-            .about-grid,
-            .services-grid,
-            .booking-grid,
-            .reviews-grid,
-            .location-grid { grid-template-columns: minmax(0, 1fr); }
+            .hero, .about-grid, .services-grid, .booking-grid, .reviews-grid { grid-template-columns: minmax(0, 1fr); }
             nav { flex-direction: column; align-items: flex-start; }
+            .form-row { grid-template-columns: 1fr; }
+            .booking-tabs { flex-direction: column; }
         }
         @media (max-width: 600px) {
             .hero-title { font-size: 1.6rem; }
@@ -134,10 +143,9 @@
             </div>
             <div class="nav-links">
                 <a href="#about">عن العيادة</a>
+                <a href="#booking">احجز موعدك الآن</a>
                 <a href="#services">الخدمات</a>
-                <a href="#booking">حجز المواعيد</a>
                 <a href="#reviews">آراء المربين</a>
-                <a href="#location">الموقع والتواصل</a>
             </div>
         </nav>
         <div class="hero">
@@ -178,15 +186,178 @@
                 <h2 class="section-title">عن عيادة الكفوف السعيدة</h2>
                 <p class="section-sub">عيادة سعودية متخصصة في القطط فقط، مجهزة لخدمة المربين في منطقة القصيم وما حولها.</p>
             </div>
-            <div class="about-grid">            <div class="about-text">
-                <p><strong>"هنا تبدأ راحة قطتك… وتبدأ معها رعاية طبية تهتم فعلًا."</strong></p>
-                <p>في عيادة الكفوف السعيدة نصنع تجربة علاجية مختلفة للقطط؛ تجربة تجمع بين التشخيص الدقيق، والرعاية الهادئة، والاهتمام الحقيقي بالتفاصيل اللي تصنع فرق واضح في صحة الأليف.</p>
-                <p>نوفّر بيئة مُهيأة بالكامل للقطط فقط، مع مختبر متكامل، أجهزة أشعة حديثة ومتطورة، وخيارات تنويم علاجي للحالات اللي تحتاج متابعة دقيقة.</p>
-                <p>كل خطوة تتم بطريقة واضحة وبأسلوب بسيط وواقعي بعيد عن التعقيد والتهويل.</p>
-                <p>سواء كانت الزيارة للفحص، علاج، متابعة حالة، أو خدمة عناية—نضمن لك تجربة مرتّبة من لحظة الوصول وحتى اكتمال الخطة العلاجية، مع شرح مفهوم واحترام كامل لوقتك وقلقك على قطتك.</p>
-                <p>هدفنا إن كل زيارة تكون مريحة، وكل قرار علاجي يكون مبني على خبرة وتشخيص دقيق وثقة متبادلة.</p>
-                <p><strong>ابدأ تجربتك مع الكفوف السعيدة… رعاية متخصصة تصنع فارقًا حقيقيًا لصحة قطتك.</strong></p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p><strong>"هنا تبدأ راحة قطتك… وتبدأ معها رعاية طبية تهتم فعلًا."</strong></p>
+                    <p>في عيادة الكفوف السعيدة نصنع تجربة علاجية مختلفة للقطط؛ تجربة تجمع بين التشخيص الدقيق، والرعاية الهادئة، والاهتمام الحقيقي بالتفاصيل اللي تصنع فرق واضح في صحة الأليف.</p>
+                    <p>نوفّر بيئة مُهيأة بالكامل للقطط فقط، مع مختبر متكامل، أجهزة أشعة حديثة ومتطورة، وخيارات تنويم علاجي للحالات اللي تحتاج متابعة دقيقة.</p>
+                    <p>كل خطوة تتم بطريقة واضحة وبأسلوب بسيط وواقعي بعيد عن التعقيد والتهويل.</p>
+                    <p>سواء كانت الزيارة للفحص، علاج، متابعة حالة، أو خدمة عناية—نضمن لك تجربة مرتّبة من لحظة الوصول وحتى اكتمال الخطة العلاجية، مع شرح مفهوم واحترام كامل لوقتك وقلقك على قطتك.</p>
+                    <p>هدفنا إن كل زيارة تكون مريحة، وكل قرار علاجي يكون مبني على خبرة وتشخيص دقيق وثقة متبادلة.</p>
+                    <p><strong>ابدأ تجربتك مع الكفوف السعيدة… رعاية متخصصة تصنع فارقًا حقيقيًا لصحة قطتك.</strong></p>
+                </div>
             </div>
+        </div>
+    </section>
+    <section id="booking">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">احجز موعدك إلكترونياً</h2>
+                <p class="section-sub">اختر نوع الخدمة، التاريخ والوقت المناسب، ثم أرسل طلب الحجز عبر واتساب مباشرة.</p>
+            </div>
+            
+            <div class="booking-form-container">
+                <div class="booking-tabs">
+                    <button class="tab-btn active" data-tab="grooming">خدمات العناية ✨</button>
+                    <button class="tab-btn" data-tab="checkup">الكشوفات 🩺</button>
+                    <button class="tab-btn" data-tab="surgery">العمليات ⚕️</button>
+                </div>
+
+                <!-- خدمات العناية -->
+                <div class="tab-content active" id="grooming">
+                    <form class="booking-form" id="groomingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="groomingService" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="بكج الكفوف السعيدة كبار - 129 ريال" data-duration="90">بكج الكفوف السعيدة كبار - 129 ريال</option>
+                                    <option value="بكج الكفوف السعيدة صغار - 99 ريال" data-duration="60">بكج الكفوف السعيدة صغار - 99 ريال</option>
+                                    <option value="حلاقة منطقة الحمام - 15 ريال" data-duration="15">حلاقة منطقة الحمام - 15 ريال</option>
+                                    <option value="حلاقة منطقة البطن - 20 ريال" data-duration="15">حلاقة منطقة البطن - 20 ريال</option>
+                                    <option value="حلاقة الكفوف - 15 ريال" data-duration="15">حلاقة الكفوف - 15 ريال</option>
+                                    <option value="قص أظافر - 10 ريال" data-duration="15">قص أظافر - 10 ريال</option>
+                                    <option value="حلاقة قطط كبيرة - 79 ريال" data-duration="60">حلاقة قطط كبيرة - 79 ريال</option>
+                                    <option value="حلاقة قطط صغيرة - 59 ريال" data-duration="60">حلاقة قطط صغيرة - 59 ريال</option>
+                                    <option value="شور قطط كبيرة - 69 ريال" data-duration="60">شور قطط كبيرة - 69 ريال</option>
+                                    <option value="شور قطط كتن - 49 ريال" data-duration="60">شور قطط كتن - 49 ريال</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="groomingTime" required>
+                                    <option value="">اختر نوع الخدمة أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
+                </div>
+
+                <!-- الكشوفات -->
+                <div class="tab-content" id="checkup">
+                    <form class="booking-form" id="checkupForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="checkupService" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="كشف عام - 25 ريال" data-duration="15">كشف عام - 25 ريال</option>
+                                    <option value="تطعيم رباعي - 59 ريال" data-duration="20">تطعيم رباعي - 59 ريال</option>
+                                    <option value="تحليل صورة دم - 159 ريال" data-duration="30">تحليل صورة دم - 159 ريال</option>
+                                    <option value="تحليل وظائف كبد وكلى - 199 ريال" data-duration="60">تحليل وظائف كبد وكلى - 199 ريال</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="checkupTime" required>
+                                    <option value="">اختر التاريخ أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>ملاحظات أو أعراض (اختياري)</label>
+                            <textarea name="notes" rows="3" placeholder="مثال: القطة تعاني من خمول وقلة شهية منذ يومين..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
+                </div>
+
+                <!-- العمليات -->
+                <div class="tab-content" id="surgery">
+                    <form class="booking-form" id="surgeryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="surgeryService" required>
+                                    <option value="">اختر نوع العملية</option>
+                                    <option value="عملية تعقيم ذكور - 349 ريال (4 دفعات متاحة)" data-duration="30" data-gender="male">عملية تعقيم ذكور - 349 ريال (دفعات متاحة)</option>
+                                    <option value="عملية تعقيم إناث - 499 ريال (4 دفعات متاحة)" data-duration="60" data-gender="female">عملية تعقيم إناث - 499 ريال (دفعات متاحة)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="surgeryTime" required>
+                                    <option value="">اختر التاريخ أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>نظام الدفع بالتمارا (4 دفعات بدون فوائد) 💳</label>
+                            <select name="tamara" required>
+                                <option value="">اختر طريقة الدفع</option>
+                                <option value="دفع كامل">دفع كامل</option>
+                                <option value="تمارا - 4 دفعات بدون فوائد (ذكور: 87.25 ريال × 4 | إناث: 124.75 ريال × 4)">تمارا - 4 دفعات بدون فوائد</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ملاحظات (اختياري)</label>
+                            <textarea name="notes" rows="3" placeholder="أي معلومات إضافية تود إضافتها..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -256,33 +427,161 @@
     <section id="booking">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">احجز موعدك بسهولة عبر الواتساب</h2>
-                <p class="section-sub">اختر نوع الحجز، وسيتم فتح الواتساب برسالة جاهزة، تقدر تعدل عليها وترسلها مباشرة.</p>
+                <h2 class="section-title">احجز موعدك إلكترونياً</h2>
+                <p class="section-sub">اختر نوع الخدمة، التاريخ والوقت المناسب، ثم أرسل طلب الحجز عبر واتساب مباشرة.</p>
             </div>
-            <div class="booking-grid">
-                <div class="booking-card">
-                    <h3>أنواع الحجز المتاحة</h3>
-                    <p>الحجز عبر الواتساب يعطيك أولوية للدخول بدون انتظار، ويضمن تنظيم الجدول بحيث نقلل الزحمة قدر الإمكان.</p>
-                    <div class="booking-buttons">
-                        <a class="btn btn-primary btn-book" href="https://wa.me/966920033859?text=مرحبًا، أبغى أكشف على الأليف في عيادة الكفوف السعيدة">حجز كشف بالعيادة <span>🩺</span></a>
-                        <a class="btn btn-book" style="background:#0b1220; color:#f9fafb; border:1px solid #4b5563;" href="https://wa.me/966920033859?text=مرحبًا، أبغى أحجز خدمة عناية لقطي في عيادة الكفوف السعيدة">حجز خدمات عناية <span>✨</span></a>
-                        <a class="btn btn-book" style="background:#111827; color:#fde68a; border:1px solid #facc15;" href="https://wa.me/966920033859?text=مرحبًا، أبغى أستفسر عن عمليات التعقيم للقطط في عيادة الكفوف السعيدة">استفسار عن عمليات التعقيم <span>⚕️</span></a>
-                    </div>
-                    <div class="booking-note">يفضّل تكتب في الرسالة: عمر القطة، الأعراض باختصار، وأي أدوية أخذتها سابقًا (إذا موجودة)، عشان نقدر نساعدك بشكل أدق.</div>
+            
+            <div class="booking-form-container">
+                <div class="booking-tabs">
+                    <button class="tab-btn active" data-tab="grooming">خدمات العناية ✨</button>
+                    <button class="tab-btn" data-tab="checkup">الكشوفات 🩺</button>
+                    <button class="tab-btn" data-tab="surgery">العمليات ⚕️</button>
                 </div>
-                <div class="booking-info">
-                    <div class="booking-info-row">
-                        <div class="booking-info-label">كيف يتم تأكيد الموعد؟</div>
-                        <div>موظف/ـة الاستقبال يراجع الرسالة، ويرد عليك بتوقيت متاح ويثبت الموعد أو يقترح وقت بديل.</div>
-                    </div>
-                    <div class="booking-info-row">
-                        <div class="booking-info-label">متى نقرر التنويم العلاجي؟</div>
-                        <div>قرار التنويم يكون بعد كشف الطبيب وتشخيص الحالة، مو عن طريق الواتساب مباشرة.</div>
-                    </div>
-                    <div class="booking-info-row">
-                        <div class="booking-info-label">هل أقدر أجي بدون حجز؟</div>
-                        <div>الحجز المسبق يعطي العميل أولوية للدخول بسرعة بدون انتظار.</div>
-                    </div>
+
+                <!-- خدمات العناية -->
+                <div class="tab-content active" id="grooming">
+                    <form class="booking-form" id="groomingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="groomingService" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="بكج الكفوف السعيدة كبار - 129 ريال" data-duration="90">بكج الكفوف السعيدة كبار - 129 ريال</option>
+                                    <option value="بكج الكفوف السعيدة صغار - 99 ريال" data-duration="60">بكج الكفوف السعيدة صغار - 99 ريال</option>
+                                    <option value="حلاقة منطقة الحمام - 15 ريال" data-duration="15">حلاقة منطقة الحمام - 15 ريال</option>
+                                    <option value="حلاقة منطقة البطن - 20 ريال" data-duration="15">حلاقة منطقة البطن - 20 ريال</option>
+                                    <option value="حلاقة الكفوف - 15 ريال" data-duration="15">حلاقة الكفوف - 15 ريال</option>
+                                    <option value="قص أظافر - 10 ريال" data-duration="15">قص أظافر - 10 ريال</option>
+                                    <option value="حلاقة قطط كبيرة - 79 ريال" data-duration="60">حلاقة قطط كبيرة - 79 ريال</option>
+                                    <option value="حلاقة قطط صغيرة - 59 ريال" data-duration="60">حلاقة قطط صغيرة - 59 ريال</option>
+                                    <option value="شور قطط كبيرة - 69 ريال" data-duration="60">شور قطط كبيرة - 69 ريال</option>
+                                    <option value="شور قطط كتن - 49 ريال" data-duration="60">شور قطط كتن - 49 ريال</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="groomingTime" required>
+                                    <option value="">اختر نوع الخدمة أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
+                </div>
+
+                <!-- الكشوفات -->
+                <div class="tab-content" id="checkup">
+                    <form class="booking-form" id="checkupForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="checkupService" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="كشف عام - 25 ريال" data-duration="15">كشف عام - 25 ريال</option>
+                                    <option value="تطعيم رباعي - 59 ريال" data-duration="20">تطعيم رباعي - 59 ريال</option>
+                                    <option value="تحليل صورة دم - 159 ريال" data-duration="30">تحليل صورة دم - 159 ريال</option>
+                                    <option value="تحليل وظائف كبد وكلى - 199 ريال" data-duration="60">تحليل وظائف كبد وكلى - 199 ريال</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="checkupTime" required>
+                                    <option value="">اختر التاريخ أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>ملاحظات أو أعراض (اختياري)</label>
+                            <textarea name="notes" rows="3" placeholder="مثال: القطة تعاني من خمول وقلة شهية منذ يومين..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
+                </div>
+
+                <!-- العمليات -->
+                <div class="tab-content" id="surgery">
+                    <form class="booking-form" id="surgeryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>نوع الخدمة *</label>
+                                <select name="service" id="surgeryService" required>
+                                    <option value="">اختر نوع العملية</option>
+                                    <option value="عملية تعقيم ذكور - 349 ريال (4 دفعات متاحة)" data-duration="30" data-gender="male">عملية تعقيم ذكور - 349 ريال (دفعات متاحة)</option>
+                                    <option value="عملية تعقيم إناث - 499 ريال (4 دفعات متاحة)" data-duration="60" data-gender="female">عملية تعقيم إناث - 499 ريال (دفعات متاحة)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>اسم الأليف *</label>
+                                <input type="text" name="petName" placeholder="مثال: مشمش" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال *</label>
+                                <input type="tel" name="phone" placeholder="05xxxxxxxx" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>التاريخ المفضل *</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوقت المفضل *</label>
+                                <select name="time" id="surgeryTime" required>
+                                    <option value="">اختر التاريخ أولاً</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>نظام الدفع بالتمارا (4 دفعات بدون فوائد) 💳</label>
+                            <select name="tamara" required>
+                                <option value="">اختر طريقة الدفع</option>
+                                <option value="دفع كامل">دفع كامل</option>
+                                <option value="تمارا - 4 دفعات بدون فوائد">تمارا - 4 دفعات بدون فوائد (87.25 ريال × 4)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ملاحظات (اختياري)</label>
+                            <textarea name="notes" rows="3" placeholder="أي معلومات إضافية تود إضافتها..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">إرسال طلب الحجز عبر واتساب 📱</button>
+                        <p class="form-note">سيتم فتح واتساب تلقائياً مع رسالة جاهزة تحتوي على جميع التفاصيل</p>
+                    </form>
                 </div>
             </div>
         </div>
@@ -343,36 +642,6 @@
             </div>
         </div>
     </section>
-    <section id="location">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">الموقع وأوقات العمل وطرق التواصل</h2>
-                <p class="section-sub">زورنا في العيادة أو تواصل معنا قبل الزيارة للحجز والاستفسار.</p>
-            </div>
-            <div class="contact-card" style="max-width: 600px; margin: 0 auto;">
-                <div class="contact-row">
-                    <div class="contact-label">عنوان العيادة:</div>
-                    <div>القصيم - المملكة العربية السعودية</div>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-label">أوقات العمل:</div>
-                    <ul class="hours-list">
-                        <li>الأحد - الخميس: 10:00 صباحًا - 10:00 مساءً</li>
-                        <li>الجمعة: مغلقة</li>
-                        <li>السبت: 4:00 مساءً - 10:00 مساءً</li>
-                    </ul>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-label">الرقم الموحد:</div>
-                    <a href="tel:920033859">920033859</a>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-label">واتساب العيادة:</div>
-                    <a href="https://wa.me/966920033859?text=مرحبًا، عندي استفسار بخصوص قطتي">فتح واتساب للتواصل</a>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 <footer>
     <div class="footer-inner">
@@ -383,6 +652,244 @@
 <div class="whatsapp-float">
     <a href="https://wa.me/966920033859?text=مرحبًا، عندي استفسار بخصوص قطتي">💬</a>
 </div>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// نظام التبويبات
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+        
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// تحديد التواريخ المتاحة (30 يوم قدام فقط)
+const dateInputs = document.querySelectorAll('input[type="date"]');
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(today.getDate() + 1); // البدء من الغد
+const maxDate = new Date(tomorrow);
+maxDate.setDate(tomorrow.getDate() + 30); // 30 يوم من الغد
+
+dateInputs.forEach(input => {
+    input.min = tomorrow.toISOString().split('T')[0];
+    input.max = maxDate.toISOString().split('T')[0];
+});
+
+// نظام الأوقات الديناميكي
+function generateTimeSlots(serviceDuration, selectedDate) {
+    const slots = [];
+    const dateObj = new Date(selectedDate);
+    const dayOfWeek = dateObj.getDay(); // 0 = الأحد, 5 = الجمعة
+    
+    // صباحي: 9:30 - 12:00
+    let currentTime = 9.5; // 9:30
+    while (currentTime + (serviceDuration / 60) <= 12) {
+        slots.push(formatTime(currentTime));
+        currentTime += serviceDuration / 60;
+    }
+    
+    // مسائي: 4:00 - 10:00 (ما عدا يوم الجمعة للعناية والعمليات)
+    if (dayOfWeek !== 5 || serviceDuration === 0) { // 0 يعني كشوفات (متاحة يوم الجمعة)
+        currentTime = 16; // 4:00 مساءً
+        while (currentTime + (serviceDuration / 60) <= 22) {
+            slots.push(formatTime(currentTime));
+            currentTime += serviceDuration / 60;
+        }
+    }
+    
+    return slots;
+}
+
+function formatTime(decimalTime) {
+    const hours = Math.floor(decimalTime);
+    const minutes = Math.round((decimalTime - hours) * 60);
+    const period = hours >= 12 ? 'مساءً' : 'صباحاً';
+    const displayHours = hours > 12 ? hours - 12 : hours;
+    const minutesStr = minutes === 0 ? '00' : minutes;
+    return `${displayHours}:${minutesStr} ${period}`;
+}
+
+// خدمات العناية - تحديث الأوقات حسب نوع الخدمة
+const groomingService = document.getElementById('groomingService');
+const groomingTime = document.getElementById('groomingTime');
+const groomingDate = document.querySelector('#grooming input[name="date"]');
+
+groomingService.addEventListener('change', function() {
+    updateGroomingTimes();
+});
+
+groomingDate.addEventListener('change', function() {
+    updateGroomingTimes();
+});
+
+function updateGroomingTimes() {
+    const selectedOption = groomingService.options[groomingService.selectedIndex];
+    const duration = parseInt(selectedOption.dataset.duration) || 0;
+    const selectedDate = groomingDate.value;
+    
+    groomingTime.innerHTML = '<option value="">اختر الوقت</option>';
+    
+    if (duration && selectedDate) {
+        const dateObj = new Date(selectedDate);
+        const dayOfWeek = dateObj.getDay();
+        
+        // منع العناية يوم الجمعة
+        if (dayOfWeek === 5) {
+            groomingTime.innerHTML = '<option value="">خدمات العناية غير متاحة يوم الجمعة</option>';
+            return;
+        }
+        
+        const slots = generateTimeSlots(duration, selectedDate);
+        slots.forEach(slot => {
+            const option = document.createElement('option');
+            option.value = slot;
+            option.textContent = slot;
+            groomingTime.appendChild(option);
+        });
+    }
+}
+
+// الكشوفات - الأوقات (حسب نوع الخدمة)
+const checkupService = document.getElementById('checkupService');
+const checkupDate = document.querySelector('#checkup input[name="date"]');
+const checkupTime = document.getElementById('checkupTime');
+
+checkupService.addEventListener('change', function() {
+    updateCheckupTimes();
+});
+
+checkupDate.addEventListener('change', function() {
+    updateCheckupTimes();
+});
+
+function updateCheckupTimes() {
+    const selectedOption = checkupService.options[checkupService.selectedIndex];
+    const duration = parseInt(selectedOption.dataset.duration) || 15;
+    const selectedDate = checkupDate.value;
+    
+    checkupTime.innerHTML = '<option value="">اختر الوقت</option>';
+    
+    if (selectedDate && duration) {
+        const slots = generateTimeSlots(duration, selectedDate);
+        slots.forEach(slot => {
+            const option = document.createElement('option');
+            option.value = slot;
+            option.textContent = slot;
+            checkupTime.appendChild(option);
+        });
+    }
+}
+
+// العمليات - الأوقات (صباحاً فقط حسب نوع العملية)
+const surgeryService = document.getElementById('surgeryService');
+const surgeryDate = document.querySelector('#surgery input[name="date"]');
+const surgeryTime = document.getElementById('surgeryTime');
+
+surgeryService.addEventListener('change', function() {
+    updateSurgeryTimes();
+});
+
+surgeryDate.addEventListener('change', function() {
+    updateSurgeryTimes();
+});
+
+function updateSurgeryTimes() {
+    const selectedOption = surgeryService.options[surgeryService.selectedIndex];
+    const duration = parseInt(selectedOption.dataset.duration) || 0;
+    const gender = selectedOption.dataset.gender;
+    const selectedDate = surgeryDate.value;
+    
+    surgeryTime.innerHTML = '<option value="">اختر الوقت</option>';
+    
+    if (!selectedDate || !duration) return;
+    
+    const dateObj = new Date(selectedDate);
+    const dayOfWeek = dateObj.getDay();
+    
+    // منع العمليات يوم الجمعة
+    if (dayOfWeek === 5) {
+        surgeryTime.innerHTML = '<option value="">العمليات غير متاحة يوم الجمعة</option>';
+        return;
+    }
+    
+    const slots = [];
+    
+    if (gender === 'male') {
+        // ذكور: 5 مواعيد صباحية (كل نص ساعة)
+        let currentTime = 9.5; // 9:30
+        while (currentTime + (duration / 60) <= 12 && slots.length < 5) {
+            slots.push(formatTime(currentTime));
+            currentTime += 0.5; // نص ساعة
+        }
+    } else if (gender === 'female') {
+        // إناث: موعدين صباحية فقط (كل ساعة)
+        slots.push(formatTime(9.5)); // 9:30
+        slots.push(formatTime(10.5)); // 10:30
+    }
+    
+    slots.forEach(slot => {
+        const option = document.createElement('option');
+        option.value = slot;
+        option.textContent = slot;
+        surgeryTime.appendChild(option);
+    });
+}
+
+// معالجة إرسال النماذج
+function handleFormSubmit(e, serviceType) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const service = formData.get('service');
+    const petName = formData.get('petName');
+    const phone = formData.get('phone');
+    const date = formData.get('date');
+    const time = formData.get('time');
+    const notes = formData.get('notes') || '';
+    const tamara = formData.get('tamara') || '';
+    
+    // تنسيق التاريخ بشكل أفضل
+    const dateObj = new Date(date);
+    const formattedDate = dateObj.toLocaleDateString('ar-SA', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    // بناء رسالة الواتساب
+    let message = `مرحبًا، أبغى أحجز موعد في عيادة الكفوف السعيدة\n\n`;
+    message += `📋 نوع الخدمة: ${service}\n`;
+    message += `📅 التاريخ: ${formattedDate}\n`;
+    message += `🕐 الوقت: ${time}\n`;
+    message += `🐱 اسم الأليف: ${petName}\n`;
+    message += `📱 رقم الجوال: ${phone}`;
+    
+    if (serviceType === 'عملية' && tamara) {
+        message += `\n💳 طريقة الدفع: ${tamara}`;
+    }
+    
+    if (notes) {
+        message += `\n\n📝 ملاحظات إضافية:\n${notes}`;
+    }
+    
+    // فتح واتساب
+    const whatsappUrl = `https://wa.me/966920033859?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+document.getElementById('groomingForm').addEventListener('submit', (e) => handleFormSubmit(e, 'عناية'));
+document.getElementById('checkupForm').addEventListener('submit', (e) => handleFormSubmit(e, 'كشف'));
+document.getElementById('surgeryForm').addEventListener('submit', (e) => handleFormSubmit(e, 'عملية'));
+</script>
 </body>
 </html>
